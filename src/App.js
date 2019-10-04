@@ -1,8 +1,11 @@
 import React from 'react';
-import { Provider, connect } from "react-redux";
-import store from './redux/redux-store';
 import MessageContainer from './components/Message/MessageContainer';
-import MessageTrainingContainer from './components/MessageTraining/MessageTrainingContainer';
+import Navbar from './components/Navbar/Navbar';
+import { Route, BrowserRouter } from 'react-router-dom';
+import {Provider} from 'react-redux'; 
+import store from './redux/redux-store';
+
+
 
 
 
@@ -11,12 +14,31 @@ class App extends React.Component {
 
   render() {
     return <>
-      <MessageContainer />
-      {/* <MessageTrainingContainer /> */}
+    <MessageContainer /> ///////////////////////
+      <Navbar />
+      <div>
+        <Route path='/messages'
+        render={() => <MessageContainer />} />
+      </div>
     </>
   }
 }
-export default App;
+
+
+
+
+
+const TrainingApp = props => {
+  return <div>
+    <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+  </div>
+}
+export default TrainingApp;
+
 
 
 
