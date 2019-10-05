@@ -4,7 +4,6 @@ import React from 'react';
 const Messages = props => {
     let messagesElement = props.messages.map(n => <MessagesElement id={n.id} key={n.id} text={n.text} />)
     const onAddMessage = value => {
-        debugger
         props.addMessage(value.messagesReduxForm)
     }
     return <div>
