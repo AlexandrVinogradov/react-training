@@ -11,7 +11,6 @@ const Users = props => {
 
 
 export const User = props => {
-    
     return <span>
         <div>{props.user.name}</div>
     </span>
