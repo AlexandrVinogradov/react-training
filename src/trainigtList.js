@@ -1,23 +1,35 @@
-import * as axios from 'axios';
+import {usersAPI} from '../api/api';
 
-const instance = axios.create({
-    withCredential: true,
-    baseURL: 'https://social-network.samuraijs.com/api/1.0',
-    headers: {
-        'API-KEY': "ae4c3a01-1d12-4498-85df-24268c218e2b"
-    }
-})
+const SET_USERS = 'SET_USERS';
 
+let initialState = {
+    users: [],
+    currentPage: 1, 
+    pageSize: 5
+}
 
-
-
-
-
-export const usersAPI = {
-    requestUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                return response.data;
-            }); 
+const usersReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SET_USERS:
+            return {
+                ...state,
+                users: action.users
+            };
+        default:
+            return state;
     }
 }
+
+export const setUsers = (users) => ({type: SET_USERS, users});
+
+export const requestUsers = (page, pageSize) => {
+    return async (dispatch) => {
+        const data = await usersAPI.requestUsers(page, pageSize);
+        dispatch(setUsers(data.items));
+    }
+}
+
+
+
+export default usersReducer;
+        
