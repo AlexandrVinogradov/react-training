@@ -1,29 +1,30 @@
 import React from 'react';
-import {reduxForm, Field} from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
+
 
 const Messages = props => {
-    let messageElement = props.messages.map(m => <NewItem id={m.id} text={m.text} key={m.id} />)
 
-    const onAddMessage = (value) => {
-        props.addMessage(value.messageForm)
+    const messagesElement = props.messages.map(m => <MessageElement id={m.id} key={m.id} text={m.text} />)
+    const onAddMessage = value => {
+        props.addMessage(value.messageReduxForm)
     }
+
     return <div>
-        {messageElement}
-        <MessageForm onSubmit={onAddMessage}/>
+        {messagesElement}
+        <MessageReduxForm onSubmit={onAddMessage}/>
     </div>
 }
 export default Messages;
+ const MessageElement = props => {
+     return <div>
+         {props.text}
+     </div>
+ }
 
-const NewItem = props => {
-    return <div>
-        {props.text}
-    </div>
-}
-
-const MessageReduxForm = props => {
+const MessageForm = props => {
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <Field name='messageForm' component='textarea' />
+            <Field name='messageReduxForm' component='textarea' />
         </div>
         <div>
             <button>push</button>
@@ -31,4 +32,5 @@ const MessageReduxForm = props => {
     </form>
 }
 
-export const MessageForm = reduxForm({ form: 'messageReduxForm' })(MessageReduxForm);
+
+export const MessageReduxForm = reduxForm( {form: 'messageReduxForm' } )(MessageForm);

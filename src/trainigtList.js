@@ -1,35 +1,16 @@
-import {usersAPI} from '../api/api';
+import React from 'react';
 
-const SET_USERS = 'SET_USERS';
-
-let initialState = {
-    users: [],
-    currentPage: 1, 
-    pageSize: 5
+const Users = props => {
+    return <div>
+        {
+            props.users.map(u => <User key={u.id} user={u} />)
+        }
+    </div>
 }
+export default Users;
 
-const usersReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SET_USERS:
-            return {
-                ...state,
-                users: action.users
-            };
-        default:
-            return state;
-    }
+const User = props => {
+    return <div>
+        {props.user.name}
+    </div>
 }
-
-export const setUsers = (users) => ({type: SET_USERS, users});
-
-export const requestUsers = (page, pageSize) => {
-    return async (dispatch) => {
-        const data = await usersAPI.requestUsers(page, pageSize);
-        dispatch(setUsers(data.items));
-    }
-}
-
-
-
-export default usersReducer;
-        
