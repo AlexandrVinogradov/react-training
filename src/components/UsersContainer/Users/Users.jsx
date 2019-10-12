@@ -1,18 +1,19 @@
 import React from 'react';
 
 const Users = props => {
-    props.users.map(u => <User key={u.id} user={u} />)
+    const usersElement = props.users.map(u => <User key={u.id} user={u} />)
     return <>
-        <User />
+        {usersElement}
     </>
 }
 export default Users;
 
 const User = props => {
-    return <>
-        {props.user}
-    </>
+    return <div>
+        {props.user.name}
+    </div>
 }
+
 
 
 

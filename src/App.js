@@ -5,6 +5,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import store from './redux/redux-store';
 import {Provider} from 'react-redux';
 import UsersContainer from './components/UsersContainer/UsersContainer';
+import MessageLocalState from './components/MessageLocalState/MessageLocalState';
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,8 @@ class App extends React.Component {
           render={() => <MessageContainer />} />
         <Route path='/users'
           render={() => <UsersContainer />} />
+        <Route path='/messagesLocalState'
+          render={() => <MessageLocalState />} />
       </div>
     </div>
   }
