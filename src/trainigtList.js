@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-class MessageLocalState extends React.Component {
+class MessageLocalStaet extends React.Component {
     state = {
         messages: [
             { id: '1', text: 'one' },
@@ -9,45 +8,41 @@ class MessageLocalState extends React.Component {
             { id: '3', text: 'three' },
             { id: '4', text: 'four' }
         ],
-        textareaValue: '123'
-    }
-
-    onAddMessage = (textareaValue) => {
-
-        // console.log(e)
-        this.setState ({
-            
-            messages: [this.state.messages.concat(), { id: '5', text: textareaValue }]
-        })
+        text: ''
     }
     onChangeMessage = (e) => {
-
-        this.setState ({
-            textareaValue: e.currentTarget.value
+        this.setState({
+            text: e.currentTarget.value
         })
+    }
+    onAddMessage = () => {
+        const newItem = {
+            text: this.state.text,
+            id: Date.now(),
+
+        }
+        this.setState({
+            messages: this.state.messages.concat(newItem),
+            text: ''
+
+        });
     }
 
     render() {
-        let newText = this.state.textareaValue;
-
         return <div>
-            {this.state.messages.map(t => <NewItemMessage key={t.id} message={t} />)}
-            <div>
-                <textarea value={newText} onChange={this.onChangeMessage}/>
-            </div>
-            <div>
-                <button onClick={this.onAddMessage}>push</button>
-            </div>
+            {this.state.messages.map(m => <NewItem key={m.id} text={m.text} />)}
+
+            <div><NewItem /></div>
+
+            <textarea value={this.state.text} onChange={this.onChangeMessage} />
+            <button onClick={this.onAddMessage}>push</button>
         </div>
     }
 }
-export default MessageLocalState;
 
-
-const NewItemMessage = props => {
+const NewItem = props => {
     return <div>
-        {props.message.text}
+        {props.text}
     </div>
 }
-
-
+export default MessageLocalStaet;

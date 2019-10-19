@@ -1,55 +1,53 @@
 import React from 'react';
 
-
-class MessageLocalState extends React.Component {
+class MessagesLocalState extends React.Component {
     state = {
         messages: [
-            { id: '1', text: 'one' },
-            { id: '2', text: 'two' },
-            { id: '3', text: 'three' },
-            { id: '4', text: 'four' }
+            {id: "1", text: 'one'},
+            {id: "2", text: 'two'},
+            {id: '3', text: 'three'},
+            {id: '4', text: 'four'}
         ],
-        textareaValue: '123'
+        newText: ''
+    }
+
+    onChangeMessage = (e) => {
+        this.setState({
+            newText: e.currentTarget.value
+        })
     }
 
     onAddMessage = () => {
-        const newItem = {
-            text: this.state.textareaValue,
-            id: Date.now()
-          };
 
-        this.setState ({
-            // messages: [this.messages, {id: 5, text: this.state.textareaValue }]
-            messages: this.state.messages.concat(newItem)
-        })
-    }
-    onChangeMessage = (e) => {
-        this.setState ({
-            textareaValue: e.currentTarget.value
+        const newItem = {
+            text: this.state.newText,
+            id: Date.now()
+        }
+
+        this.setState({
+            messages: this.state.messages.concat(newItem),
+            newText: ''
         })
     }
 
     render() {
-        let newText = this.state.textareaValue;
-
         return <div>
-            {this.state.messages.map(t => <NewItemMessage key={t.id} message={t} />)}
+        
+            {this.state.messages.map(m => <NewMessageElement key={m.id} text={m.text} />)}
+
+            <NewMessageElement />
+            <textarea onChange={this.onChangeMessage} value={this.state.newText}/>
             <div>
-                <textarea value={newText} onChange={this.onChangeMessage}/>
-            </div>
-            <div>
-                <button onClick={this.onAddMessage}>push</button>
+            <button onClick={this.onAddMessage}>push</button>
             </div>
         </div>
     }
 }
-export default MessageLocalState;
 
-
-const NewItemMessage = props => {
-    return <div>
-        {props.message.text}
+const NewMessageElement = props => {
+    return<div>
+        {props.text}
     </div>
 }
 
-
+export default MessagesLocalState;
