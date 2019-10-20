@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class MessagesLocalState extends React.Component {
     state = {
         messages: [
@@ -11,11 +12,13 @@ class MessagesLocalState extends React.Component {
         newText: ''
     }
 
+
     onChangeMessage = (e) => {
         this.setState({
             newText: e.currentTarget.value
         })
     }
+
 
     onAddMessage = () => {
 
