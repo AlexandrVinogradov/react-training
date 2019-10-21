@@ -11,7 +11,7 @@ const Messages = props => {
 
     return <div>
         {messagesElement}
-        <MessageReduxForm onSubmit={onAddMessage}/>
+        <MessageReduxForm onSubmit={onAddMessage} />
     </div>
 }
 export default Messages;
