@@ -4,9 +4,11 @@ import Navbar from './components/Navbar/Navbar';
 import { Route, BrowserRouter } from 'react-router-dom';
 import store from './redux/redux-store';
 import s from './App.module.css';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import UsersContainer from './components/UsersContainer/UsersContainer';
 import MessageLocalState from './components/MessageLocalState/MessageLocalState';
+
+
 
 class App extends React.Component {
   render() {
@@ -23,12 +25,11 @@ class App extends React.Component {
     </div>
   }
 }
-
 const TrainingApp = () => {
   return <BrowserRouter>
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 }
 export default TrainingApp;
