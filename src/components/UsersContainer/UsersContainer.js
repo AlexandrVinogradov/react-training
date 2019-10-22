@@ -1,20 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { requestUsers } from '../../redux/users-reducer';
 import Users from './Users/Users';
-import {requestUsers} from '../../redux/users-reducer';
 import Preloader from '../common/Preloader/Preloader';
 
 class UsersContainer extends React.Component {
-    
     componentDidMount() {
         this.props.requestUsers(this.currentPage, this.pageSize)
     }
     render() {
-        return <> 
+        return <div>
             {this.props.isFetching ? <Preloader /> : null}
-            
-            <Users users={this.props.users}/> 
-        </>
+            <Users users={this.props.users}/>
+        </div>
     }
 }
 

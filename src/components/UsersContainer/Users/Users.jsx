@@ -1,24 +1,21 @@
 import React from 'react';
 
 const Users = props => {
-    const usersElement = props.users.map(u => <User key={u.id} user={u} />)
-    return <>
-        {usersElement}
-    </>
-}
-export default Users;
-
-const User = props => {
+    const userElement = props.users.map(u => <NewElement users={u} key={u.id}/>)
     return <div>
-        {props.user.name}
+        {userElement}
     </div>
 }
 
-
+const NewElement = props => {
+    return <div>
+        {props.users.name}
+    </div>
+}
+export default Users;
 
 
 // import React from 'react';
-
 // const Users = props => {
 //     return <div>
 //         {
@@ -27,7 +24,6 @@ const User = props => {
 //     </div>
 // }
 // export default Users;
-
 // const User = props => {
 //     return <div>
 //         {props.user.name}
