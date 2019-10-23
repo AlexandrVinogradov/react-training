@@ -11,10 +11,11 @@ class MessageLocalState extends React.Component {
         newText: ''
     }
 
+    
     onChangeMessage = (e) => {
         this.setState({
             newText: e.currentTarget.value
-        })
+        })  
     }
     onAddMessage = () => {
         const newItem = {
@@ -22,9 +23,12 @@ class MessageLocalState extends React.Component {
             text: this.state.newText
         }
         this.setState({
-            messages: this.state.messages.concat(newItem)
+            messages: this.state.messages.concat(newItem),
+            newText: ''
         })
     }
+
+
     render() {
         const newElement = this.state.messages.map(m => <NewElement id={m.id} key={m.id} message={m.text} />)
         return <div>

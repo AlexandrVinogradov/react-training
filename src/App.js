@@ -7,6 +7,7 @@ import s from './App.module.css';
 import { Provider } from 'react-redux';
 import UsersContainer from './components/UsersContainer/UsersContainer';
 import MessageLocalState from './components/MessageLocalState/MessageLocalState';
+import Hook from './components/Hook/Hook';
 
 
 
@@ -21,6 +22,8 @@ class App extends React.Component {
           render={() => <UsersContainer />} />
         <Route path='/messagesLocalState'
           render={() => <MessageLocalState />} />
+        <Route path='/hook'
+          render={() => <Hook />} />
       </div>
     </div>
   }

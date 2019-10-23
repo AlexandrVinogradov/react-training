@@ -5,22 +5,23 @@ let initialState = {
         {id: '1', text: 'one'},
         {id: '2', text: 'two'},
         {id: '3', text: 'three'},
-        {id: '4', text: 'four'},
-    ]
+        {id: '4', text: 'four'}
+    ],
+    newText: ''
 }
 
-const messagesReducer = (state = initialState, action ) => {
+const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_NEW:
             return {
-                ...state, 
-                messages: [...state.messages, {id: 5, text: action.newText}],
-                newText: '123'
+                ...state,
+                messages: [...state.messages, {id: 5, text: action.newText}]
             }
         default: 
-        return state;
+        return state
     }
 }
 
-export const addMessage = (newText) => ({type: ADD_NEW, newText});
+export const addMessage = (newText) => ({type: ADD_NEW,  newText})
+
 export default messagesReducer;

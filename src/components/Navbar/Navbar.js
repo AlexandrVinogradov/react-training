@@ -6,6 +6,7 @@ const Navbar = props => {
         <li><NavLink to='/messages'>Messages</NavLink></li>
         <li><NavLink to='/users'>Users</NavLink></li>
         <li><NavLink to='/messagesLocalState'>messagesLocalState</NavLink></li>
+        <li><NavLink to='/hook'>Hook</NavLink></li>
     </ul>
 }
 export default Navbar;
