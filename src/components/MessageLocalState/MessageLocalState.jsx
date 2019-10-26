@@ -10,8 +10,6 @@ class MessageLocalState extends React.Component {
         ],
         newText: ''
     }
-
-    
     onChangeMessage = (e) => {
         this.setState({
             newText: e.currentTarget.value
@@ -27,8 +25,6 @@ class MessageLocalState extends React.Component {
             newText: ''
         })
     }
-
-
     render() {
         const newElement = this.state.messages.map(m => <NewElement id={m.id} key={m.id} message={m.text} />)
         return <div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 const Navbar = props => {
     return <ul>
         <li><NavLink to='/messages'>Messages</NavLink></li>
@@ -9,4 +8,5 @@ const Navbar = props => {
         <li><NavLink to='/hook'>Hook</NavLink></li>
     </ul>
 }
+
 export default Navbar;

@@ -9,8 +9,6 @@ import UsersContainer from './components/UsersContainer/UsersContainer';
 import MessageLocalState from './components/MessageLocalState/MessageLocalState';
 import Hook from './components/Hook/Hook';
 
-
-
 class App extends React.Component {
   render() {
     return <div className={s.App}>
@@ -28,6 +26,7 @@ class App extends React.Component {
     </div>
   }
 }
+
 const TrainingApp = () => {
   return <BrowserRouter>
     <Provider store={store}>
@@ -35,4 +34,5 @@ const TrainingApp = () => {
     </Provider>
   </BrowserRouter>
 }
+
 export default TrainingApp;
