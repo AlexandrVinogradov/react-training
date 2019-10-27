@@ -1,12 +1,19 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import * as axios from 'axios';
 
-const Navbar = props => {
-    return <ul>
-        <li><NavLink to='/messages'>Messages</NavLink></li>
-        <li><NavLink to='/users'>Users</NavLink></li>
-        <li><NavLink to='/messagesLocalState'>messagesLocalState</NavLink></li>
-        <li><NavLink to='/hook'>Hook</NavLink></li>
-    </ul>
+const instance = axios.create({
+    withCredetial: true,
+    baseURL: 'https://social-network.samuraijs.com/api/1.0',
+    headers: {
+        'API-KEY': 'ae4c3a01-1d12-4498-85df-24268c218e2b'
+    }
+})
+
+export const usersAPI = {
+    requestUsers(pageSize = 10, currentPage = 1) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+            .then(responce => {
+                return responce.data;
+            })
+    }
+    
 }
-export default Navbar;
