@@ -6,8 +6,8 @@ let iitialState = {
         { id: '2', text: 'two' },
         { id: '3', text: 'three' },
         { id: '4', text: 'four' }
-    ],
-    newText: ''
+    ], 
+    newText: '' 
 }
 
 const messagesReducer = (state = iitialState, action) => {

@@ -20,7 +20,7 @@ class MessageLocalState extends React.Component {
             id: Date.now(),
             text: this.state.newText
         }
-        this.setState({
+        this.setState({ 
             messages: this.state.messages.concat(newItem),
             newText: ''
         })

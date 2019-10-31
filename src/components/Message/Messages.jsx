@@ -1,33 +1,41 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm  } from 'redux-form';
+import { required, maxLenghtCreator} from '../../utils/validators';
 
-const Messages = props => {
-    const newElement = props.messages.map(m => <NewItem id={m.id} key={m.id} text={m.text} />)
-    const addNewMessage = value => {
-        props.addMessage(value.reduxTextarea);
+const maxLength10 = maxLenghtCreator(10);
+
+const Messages = (props) => {
+
+    const newItem = props.messages.map(m => <NewMessageItem key={m.id} id={m.id} text={m.text} /> )
+
+    const onAddMessage = value => {
+        props.addMessage(value.customTexarea)
     }
+
     return <div>
-        {newElement}
-        <ReduxForm onSubmit={addNewMessage}/>
+        {newItem}
+        <OurReduxForm onSubmit={onAddMessage} messages={props.messages} />
     </div>
 }
 export default Messages;
 
-const NewItem = props => {
-    return <div>
-        {props.text}
-    </div>
+const NewMessageItem = (props) => {
+    return <ul>
+        <li>{props.text}</li>
+    </ul>
 }
-
-const Form = props => {
-    return <form onSubmit={props.handleSubmit}>
+const ReduxForm = (props) => {
+    return <form onSubmit={props.handleSubmit}> 
+        <Field component='textarea' name='customTexarea' validate={[required, maxLength10]}/>
         <div>
-            <Field component='textarea' name='reduxTextarea' />
-        </div>
-        <div>
-            <button>push</button>
+            <CustomBtn messages={props.messages}/>
         </div>
     </form>
-} 
+}
+const OurReduxForm = reduxForm( {form: 'our redux form'} )(ReduxForm);
 
-export const ReduxForm = reduxForm({form: 'reduxForm'})(Form);
+const CustomBtn = props => {
+    return <div>
+        <button>push{props.messages.length + 1}</button>
+    </div>
+}

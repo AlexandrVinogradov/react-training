@@ -24,7 +24,7 @@ const usersReduser = (state = initialState, action) => {
             }
         default:
             return state;
-    }
+    } 
 }
 export default usersReduser;
 
