@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, reduxForm  } from 'redux-form';
-import { required, maxLenghtCreator} from '../../utils/validators';
+import { required, maxLengthCreator } from '../../utils/validators';
+import { Textarea } from '../common/FormsControls/FormControls';
 
-const maxLength10 = maxLenghtCreator(10);
+const maxLength10 = maxLengthCreator(10);
 
 const Messages = (props) => {
-
     const newItem = props.messages.map(m => <NewMessageItem key={m.id} id={m.id} text={m.text} /> )
 
     const onAddMessage = value => {
@@ -26,7 +26,7 @@ const NewMessageItem = (props) => {
 }
 const ReduxForm = (props) => {
     return <form onSubmit={props.handleSubmit}> 
-        <Field component='textarea' name='customTexarea' validate={[required, maxLength10]}/>
+        <Field component={Textarea} name='customTexarea' validate={[required, maxLength10]}/>
         <div>
             <CustomBtn messages={props.messages}/>
         </div>

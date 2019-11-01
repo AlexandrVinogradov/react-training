@@ -1,9 +1,9 @@
 export const required = value => {
-    if (value) return undefined;
-
-    return "Field is required";
+    if(value) return undefined;
+    return 'field is required';
 }
-export const maxLenghtCreator = (maxLength) => (value) => {
-    if (value.length > maxLength) return `max length is ${maxLength} symbols`;
+
+export const maxLengthCreator = (maxLength) => (value) => {
+    if(value.length > maxLength) return `max symbols is ${maxLength}` 
     return undefined;
-} 
+}
