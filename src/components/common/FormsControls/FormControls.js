@@ -12,3 +12,5 @@ export const Textarea = ({input, meta, ...props}) => {
     </div>
 }
 
+// hasError = fasle && undefined 
+// '', 0, false, null, undef
