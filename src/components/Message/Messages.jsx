@@ -1,42 +1,47 @@
 import React from 'react';
-import { Field, reduxForm  } from 'redux-form';
-import { Textarea } from '../common/FormsControls/FormControls';
+import {Field, reduxForm } from 'redux-form';
 import { required, maxLengthCreator } from '../../utils/validators';
+import {Textarea} from '../common/FormsControls/FormControls';
 
-const maxLength10 = maxLengthCreator(10)
+const maxLengt10 = maxLengthCreator(10)
 
+const Messages = props => {
 
-const Messages = (props) => {
-    const newItem = props.messages.map(m => <NewMessageItem key={m.id} id={m.id} text={m.text} /> )
+    const messageElement = props.messages.map(m => <MessageElement id={m.id} key={m.id} text={m.text} />)
 
     const onAddMessage = value => {
-        props.addMessage(value.customTexarea)
+        props.addMessage(value.customTextarea)
     }
+
     return <div>
-        {newItem}
-        <OurReduxForm onSubmit={onAddMessage} messages={props.messages} />
+        {messageElement}
+        <MessageReduxForm onSubmit={onAddMessage} messages={props.messages} />
     </div>
+
 }
 export default Messages;
 
-const NewMessageItem = (props) => {
-    return <ul>
+const MessageElement = props => {
+    return <div>
         <li>{props.text}</li>
-    </ul>
+    </div>
 }
 
-const ReduxForm = (props) => {
-    return <form onSubmit={props.handleSubmit}> 
-        <Field component={Textarea} name='customTexarea' validate={[required, maxLength10]}/>
+const MessageForm = props => {
+    return <form onSubmit={props.handleSubmit}>
         <div>
-            <CustomBtn messages={props.messages}/>
+            <Field component={Textarea} name='customTextarea' validate={[required, maxLengt10]}/>
+        </div>
+        <div>
+            <CustoBtn messages={props.messages}/>
         </div>
     </form>
 }
-const OurReduxForm = reduxForm( {form: 'our redux form'} )(ReduxForm);
 
-const CustomBtn = props => {
+const CustoBtn = props => {
     return <div>
         <button>push{props.messages.length + 1}</button>
     </div>
 }
+
+const MessageReduxForm = reduxForm( {form: 'our redux form'} )(MessageForm);
