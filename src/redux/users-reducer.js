@@ -31,11 +31,16 @@ export default usersReduser;
 export const getUsers = (users) => ({ type: GET_USERS, users });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 
+
 export const requestUsers = (page, pageSize) => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        const data = await usersAPI.requestUsers(page, pageSize)
-        dispatch(toggleIsFetching(false));
-        dispatch(getUsers(data.items));
+        usersAPI.requestUsers(page, pageSize)
+        .then(responce => {
+            dispatch(toggleIsFetching(false));
+            dispatch(getUsers(responce.items));
+        })
+
+
     }
 }
