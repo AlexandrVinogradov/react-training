@@ -26,7 +26,6 @@ const MessageElement = props => {
         <li>{props.text}</li>
     </div>
 }
-
 const MessageForm = props => {
     return <form onSubmit={props.handleSubmit}>
         <div>

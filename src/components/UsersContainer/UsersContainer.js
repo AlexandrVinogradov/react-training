@@ -15,7 +15,6 @@ class UsersContainer extends React.Component {
         </div>
     }
 }
-
 const mapStateToProps = state => {
     return {
         users: state.usersPage.users,
@@ -24,4 +23,5 @@ const mapStateToProps = state => {
         isFetching: state.usersPage.isFetching
     }
 }
+
 export default connect(mapStateToProps, {requestUsers} )(UsersContainer);
