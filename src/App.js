@@ -14,6 +14,7 @@ class App extends React.Component {
     return <div className={s.App}>
       <Navbar />
       <div>
+
         <Route path='/messages'
           render={() => <MessageContainer />} />
         <Route path='/users'
@@ -22,6 +23,7 @@ class App extends React.Component {
           render={() => <MessageLocalState />} />
         <Route path='/hook'
           render={() => <MessagesWithHook />} />
+
       </div>
     </div>
   }
