@@ -1,8 +1,11 @@
-<Route path='/messages'
-render={() => <MessageContainer />} />
-<Route path='/users'
-render={() => <UsersContainer />} />
-<Route path='/messagesLocalState'
-render={() => <MessageLocalState />} />
-<Route path='/hook'
-render={() => <MessagesWithHook />} />
+import Messages from './Messages'; 
+import {connect} from 'react-redux';
+import {addMessage} from '../../redux/messages-reducer';
+
+
+export const mapStateToProps = (state) => {
+    return {
+        messages: state.messagesPage.messages
+    }
+}
+export default connect(mapStateToProps, {addMessage} )(Messages)

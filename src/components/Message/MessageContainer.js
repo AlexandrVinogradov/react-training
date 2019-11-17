@@ -1,11 +1,14 @@
-import Messages from './Messages'; 
+import react from 'react';
 import {connect} from 'react-redux';
+import Messages from '../Message/Messages';
 import {addMessage} from '../../redux/messages-reducer';
 
 
-export const mapStateToProps = (state) => {
+
+
+const mapStareToProps = (state) => {
     return {
         messages: state.messagesPage.messages
     }
 }
-export default connect(mapStateToProps, {addMessage} )(Messages)
+export default connect(mapStareToProps, {addMessage} )(Messages);
