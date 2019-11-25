@@ -1,11 +1,36 @@
-import Messages from './Messages'; 
-import {connect} from 'react-redux';
-import {addMessage} from '../../redux/messages-reducer';
+import React from 'react';
+import MessageContainer from './components/Message/MessageContainer';
+import Navbar from './components/Navbar/Navbar';
+import { Route, BrowserRouter } from 'react-router-dom';
+import store from './redux/redux-store';
+import s from './App.module.css';
+import { Provider } from 'react-redux';
+import UsersContainer from './components/UsersContainer/UsersContainer';
+import MessageLocalState from './components/MessageLocalState/MessageLocalState';
+import MessagesWithHook from './components/MessagesWithHook/MessagesWithHook';
 
-
-export const mapStateToProps = (state) => {
-    return {
-        messages: state.messagesPage.messages
-    }
+class App extends React.Component {
+  render() {
+    return <div className={s.App}>
+      <Navbar />
+      <div>
+        <Route path='/messages'
+          render={() => <MessageContainer />} />
+        <Route path='/users'
+          render={() => <UsersContainer />} />
+        <Route path='/messagesLocalState'
+          render={() => <MessageLocalState />} />
+        <Route path='/hook'
+          render={() => <MessagesWithHook />} />
+      </div>
+    </div>
+  }
 }
-export default connect(mapStateToProps, {addMessage} )(Messages)
+const TrainingApp = () => {
+  return <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+}
+export default TrainingApp;
